@@ -15,35 +15,35 @@
             @endif
 
             <!-- Welcome Header -->
-            <div class="bg-gray-900/40 backdrop-blur-md border border-gray-800/80 rounded-3xl p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl">
+            <div class="bg-gray-900/40 backdrop-blur-md border border-gray-300 dark:border-gray-800/80 rounded-3xl p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl">
                 <div>
                     <h1 class="text-3xl font-extrabold bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
-                        أهلاً بك، {{ auth()->user()->name }} 👋
+                        أهلاً بك، {{ auth()->user()->name }} 
                     </h1>
-                    <p class="text-gray-400 mt-2 text-sm md:text-base">
+                    <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm md:text-base">
                         هنا يمكنك متابعة مشترياتك من السيارات وجدولة طلبات صيانة مركباتك بكل سهولة.
                     </p>
                 </div>
                 <div class="flex gap-4">
                     <a href="{{ route('sale.index') }}" 
-                       class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5">
-                        🚗 تصفح المعرض
+                       class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white rounded-2xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5">
+                        <span class="flex items-center justify-center"><svg class="w-5 h-5 mr-2 inline-block text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 11h8m-8 4h8m-4-10v14"></path></svg> تصفح المعرض</span>
                     </a>
                     <a href="{{ route('user.repairs.create') }}" 
                        class="px-6 py-3 bg-gray-850 hover:bg-gray-800 text-gray-300 border border-gray-700 rounded-2xl font-bold transition-all duration-300 hover:-translate-y-0.5">
-                        🛠️ طلب صيانة جديد
+                        <span class="flex items-center justify-center"><svg class="w-5 h-5 mr-2 inline-block text-indigo-600 dark:text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> طلب صيانة جديد</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Stacking: Orders & Repairs -->
-            <div class="space-y-8">
+            <!-- Grid Layout: Orders & Repairs -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
                 <!-- Section 1: Purchased Cars (Orders) -->
-                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                        <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span>🚗</span> سياراتي المشتراة
+                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-300 dark:border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
+                    <div class="flex justify-between items-center border-b border-gray-300 dark:border-gray-800 pb-4">
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <span class="flex items-center"><svg class="w-5 h-5 mr-2 inline-block text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 11h8m-8 4h8m-4-10v14"></path></svg> سياراتي المشتراة</span>
                         </h2>
                         <span class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold rounded-full">
                             {{ $orders->count() }} طلبات
@@ -53,7 +53,7 @@
                     <div class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
                         @forelse($orders as $order)
                             @if($order->vehicle)
-                                <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 hover:border-blue-500/40 transition-all duration-300 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group">
+                                <div class="bg-white dark:bg-gray-900/50 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 hover:border-blue-500/40 transition-all duration-300 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group">
                                     <div class="flex items-center gap-4">
                                         <!-- Thumbnail -->
                                         @if(is_array($order->vehicle->images) && count($order->vehicle->images) > 0)
@@ -61,7 +61,7 @@
                                                  onclick="openLightbox({{ json_encode($order->vehicle->images) }}, 0)">
                                                 <img src="{{ $order->vehicle->images[0] }}" class="w-full h-full object-cover">
                                                 @if(count($order->vehicle->images) > 1)
-                                                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-[10px] font-bold">
+                                                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-gray-900 dark:text-white text-[10px] font-bold">
                                                         +{{ count($order->vehicle->images) - 1 }}
                                                     </div>
                                                 @endif
@@ -73,19 +73,19 @@
                                             </div>
                                         @else
                                             <div class="w-16 h-16 rounded-xl bg-gray-950 border border-gray-850 flex items-center justify-center text-gray-600 text-xl shrink-0">
-                                                🚗
+                                                
                                             </div>
                                         @endif
 
                                         <div>
-                                            <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                                            <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-400 transition-colors">
                                                 {{ $order->vehicle->brand }} {{ $order->vehicle->model }}
                                             </h3>
-                                            <p class="text-gray-400 text-xs mt-1">
+                                            <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">
                                                 سنة الصنع: {{ $order->vehicle->year }} | السعر: <span class="text-emerald-400 font-bold">{{ number_format($order->vehicle->price) }} $</span>
                                             </p>
                                             <div class="mt-3 flex items-center gap-2">
-                                                <span class="text-xs text-gray-500">حالة الطلب:</span>
+                                                <span class="text-xs text-gray-500 dark:text-gray-400">حالة الطلب:</span>
                                                 @if($order->status === 'pending')
                                                     <span class="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold rounded-full">قيد الانتظار</span>
                                                 @elseif($order->status === 'approved')
@@ -101,14 +101,14 @@
                                         <!-- C2C Chat with Seller -->
                                         @if($order->vehicle && $order->vehicle->user_id !== null)
                                             <a href="{{ route('chat.show', $order->id) }}" 
-                                               class="text-center px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl flex-1 sm:flex-initial transition duration-300">
-                                                💬 محادثة البائع
+                                               class="text-center px-4 py-2 bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white text-xs font-bold rounded-xl flex-1 sm:flex-initial transition duration-300">
+                                                <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> محادثة البائع
                                             </a>
                                         @endif
 
                                         <a href="{{ route('my.cars.show', $order->vehicle_id) }}" 
                                            class="text-center px-4 py-2 bg-gray-800 hover:bg-gray-750 text-gray-200 border border-gray-700 text-xs font-bold rounded-xl flex-1 sm:flex-initial transition-all duration-300">
-                                            🔍 تفاصيل السيارة
+                                            <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> تفاصيل السيارة
                                         </a>
                                         
                                         <!-- Cancel Order (Only if pending) -->
@@ -119,7 +119,7 @@
                                                 <button type="submit" 
                                                         onclick="return confirm('هل أنت متأكد من إلغاء طلب شراء هذه السيارة؟ سيتم إرجاعها للمعرض.')"
                                                         class="w-full text-center px-4 py-2 bg-rose-600/10 hover:bg-rose-600/30 text-rose-400 border border-rose-500/20 text-xs font-bold rounded-xl transition-all duration-300">
-                                                    ❌ إلغاء الطلب
+                                                    <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> إلغاء الطلب
                                                 </button>
                                             </form>
                                         @endif
@@ -127,8 +127,8 @@
                                 </div>
                             @endif
                         @empty
-                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-800/40 text-gray-500">
-                                <span class="text-3xl block mb-2">🚗</span>
+                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-300 dark:border-gray-800/40 text-gray-500 dark:text-gray-400">
+                                <span class="text-3xl block mb-2"></span>
                                 لم تقم بشراء أي سيارات بعد.
                             </div>
                         @endforelse
@@ -136,10 +136,10 @@
                 </div>
 
                 <!-- Section 2: Repair Requests (Repairs) -->
-                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                        <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span>🛠️</span> طلبات صيانة مركباتي
+                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-300 dark:border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
+                    <div class="flex justify-between items-center border-b border-gray-300 dark:border-gray-800 pb-4">
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <span class="flex items-center"><svg class="w-5 h-5 mr-2 inline-block text-indigo-600 dark:text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> طلبات صيانة مركباتي</span>
                         </h2>
                         <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs font-semibold rounded-full">
                             {{ $repairs->count() }} طلبات
@@ -148,7 +148,7 @@
 
                     <div class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
                         @forelse($repairs as $repair)
-                            <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/40 transition-all duration-300 space-y-4 group">
+                            <div class="bg-white dark:bg-gray-900/50 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 hover:border-indigo-500/40 transition-all duration-300 space-y-4 group">
                                 <div class="flex justify-between items-start gap-4">
                                     <div class="flex items-center gap-4">
                                         <!-- Thumbnail -->
@@ -157,7 +157,7 @@
                                                  onclick="openLightbox({{ json_encode($repair->images) }}, 0)">
                                                 <img src="{{ $repair->images[0] }}" class="w-full h-full object-cover">
                                                 @if(count($repair->images) > 1)
-                                                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-[10px] font-bold">
+                                                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-gray-900 dark:text-white text-[10px] font-bold">
                                                         +{{ count($repair->images) - 1 }}
                                                     </div>
                                                 @endif
@@ -169,15 +169,15 @@
                                             </div>
                                         @else
                                             <div class="w-16 h-16 rounded-xl bg-gray-950 border border-gray-850 flex items-center justify-center text-gray-600 text-xl shrink-0">
-                                                🔧
+                                                <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                             </div>
                                         @endif
 
                                         <div>
-                                            <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
+                                            <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-indigo-400 transition-colors">
                                                 {{ $repair->brand }} {{ $repair->model }} ({{ $repair->year }})
                                             </h3>
-                                            <p class="text-gray-400 text-xs mt-1 line-clamp-2">
+                                            <p class="text-gray-600 dark:text-gray-400 text-xs mt-1 line-clamp-2">
                                                 <strong>المشكلة:</strong> {{ $repair->issue }}
                                             </p>
                                         </div>
@@ -196,14 +196,14 @@
                                 <!-- Financial and Duration Details (only shown if set) -->
                                 <div class="grid grid-cols-2 gap-4 bg-gray-950/40 p-3 rounded-xl text-xs border border-gray-850">
                                     <div>
-                                        <span class="text-gray-500 block">تكلفة الصيانة:</span>
-                                        <span class="font-bold text-white">
+                                        <span class="text-gray-500 dark:text-gray-400 block">تكلفة الصيانة:</span>
+                                        <span class="font-bold text-gray-900 dark:text-white">
                                             {{ $repair->cost ? number_format($repair->cost) . ' $' : 'قيد التقييم ⏳' }}
                                         </span>
                                     </div>
                                     <div>
-                                        <span class="text-gray-500 block">المدة المقدرة:</span>
-                                        <span class="font-bold text-white">
+                                        <span class="text-gray-500 dark:text-gray-400 block">المدة المقدرة:</span>
+                                        <span class="font-bold text-gray-900 dark:text-white">
                                             {{ $repair->duration ? $repair->duration : 'قيد التحديد ⏳' }}
                                         </span>
                                     </div>
@@ -218,15 +218,15 @@
                                             <button type="submit" 
                                                     onclick="return confirm('هل أنت متأكد من إلغاء طلب صيانة هذه السيارة؟')"
                                                     class="px-4 py-2 bg-rose-600/10 hover:bg-rose-600/30 text-rose-450 border border-rose-500/20 text-xs font-bold rounded-xl transition-all duration-300">
-                                                ❌ إلغاء طلب الصيانة
+                                                <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> إلغاء طلب الصيانة
                                             </button>
                                         </form>
                                     </div>
                                 @endif
                             </div>
                         @empty
-                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-800/40 text-gray-500">
-                                <span class="text-3xl block mb-2">🛠️</span>
+                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-300 dark:border-gray-800/40 text-gray-500 dark:text-gray-400">
+                                <span class="text-3xl block mb-2"></span>
                                 لا توجد لديك أي طلبات صيانة حالياً.
                             </div>
                         @endforelse
@@ -234,10 +234,10 @@
                 </div>
 
                 <!-- Section 3: Sales Orders on My Vehicles (My Sales Orders) -->
-                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                        <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span>💰</span> طلبات شراء سياراتي الخاصة (المبيعات)
+                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-300 dark:border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
+                    <div class="flex justify-between items-center border-b border-gray-300 dark:border-gray-800 pb-4">
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <span class="flex items-center"><svg class="w-5 h-5 mr-2 inline-block text-emerald-600 dark:text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> طلبات شراء سياراتي الخاصة (المبيعات)</span>
                         </h2>
                         <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-full">
                             {{ $salesOrders->count() }} طلبات واردة
@@ -246,7 +246,7 @@
 
                     <div class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
                         @forelse($salesOrders as $saleOrder)
-                            <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 hover:border-emerald-500/40 transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 group">
+                            <div class="bg-white dark:bg-gray-900/50 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 hover:border-emerald-500/40 transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 group">
                                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 flex-1">
                                     <!-- Thumbnail -->
                                     @if(is_array($saleOrder->vehicle->images) && count($saleOrder->vehicle->images) > 0)
@@ -261,26 +261,26 @@
                                         </div>
                                     @else
                                         <div class="w-16 h-16 rounded-xl bg-gray-950 border border-gray-850 flex items-center justify-center text-gray-600 text-xl shrink-0">
-                                            🚗
+                                            
                                         </div>
                                     @endif
 
                                     <div class="space-y-1 flex-1">
-                                        <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                                        <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-emerald-400 transition-colors">
                                             {{ $saleOrder->vehicle->brand }} {{ $saleOrder->vehicle->model }}
                                         </h3>
-                                        <p class="text-xs text-gray-400">
-                                            المشتري: <span class="text-white font-semibold">{{ $saleOrder->user->name }}</span> | 
-                                            الهاتف: <span class="text-white font-semibold">{{ $saleOrder->phone }}</span> | 
-                                            العنوان: <span class="text-white font-semibold">{{ $saleOrder->address }}</span>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                                            المشتري: <span class="text-gray-900 dark:text-white font-semibold">{{ $saleOrder->user->name }}</span> | 
+                                            الهاتف: <span class="text-gray-900 dark:text-white font-semibold">{{ $saleOrder->phone }}</span> | 
+                                            العنوان: <span class="text-gray-900 dark:text-white font-semibold">{{ $saleOrder->address }}</span>
                                         </p>
                                         @if($saleOrder->notes)
-                                            <p class="text-[11px] text-gray-500 italic bg-gray-950/20 p-2 rounded-lg border border-gray-850">
+                                            <p class="text-[11px] text-gray-500 dark:text-gray-400 italic bg-gray-100 dark:bg-white dark:bg-gray-900/50 p-2 rounded-lg border border-gray-850">
                                                 * ملاحظة المشتري: {{ $saleOrder->notes }}
                                             </p>
                                         @endif
                                         <div class="flex items-center gap-2 pt-1">
-                                            <span class="text-xs text-gray-500">حالة الطلب:</span>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">حالة الطلب:</span>
                                             @if($saleOrder->status === 'pending')
                                                 <span class="px-2.5 py-0.5 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold rounded-full">قيد الانتظار</span>
                                             @elseif($saleOrder->status === 'approved')
@@ -295,8 +295,8 @@
                                 <div class="flex flex-col sm:flex-row md:flex-col gap-2 w-full md:w-auto">
                                     <!-- Chat Button -->
                                     <a href="{{ route('chat.show', $saleOrder->id) }}" 
-                                       class="text-center px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition duration-300">
-                                        💬 محادثة المشتري
+                                       class="text-center px-4 py-2 bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white text-xs font-bold rounded-xl transition duration-300">
+                                        <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg> محادثة المشتري
                                     </a>
 
                                     @if($saleOrder->status === 'pending')
@@ -326,15 +326,15 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('هل أنت متأكد من حذف هذا الطلب؟')" class="w-full text-center px-4 py-2 bg-rose-600/10 hover:bg-rose-600/30 text-rose-450 border border-rose-500/20 text-xs font-bold rounded-xl transition">
-                                                🗑️ حذف الطلب
+                                                <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> حذف الطلب
                                             </button>
                                         </form>
                                     @endif
                                 </div>
                             </div>
                         @empty
-                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-800/40 text-gray-500">
-                                <span class="text-3xl block mb-2">💰</span>
+                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-300 dark:border-gray-800/40 text-gray-500 dark:text-gray-400">
+                                <span class="text-3xl block mb-2"></span>
                                 لم يتلقَ أي من سياراتك طلبات شراء بعد.
                             </div>
                         @endforelse
@@ -342,24 +342,24 @@
                 </div>
 
                 <!-- Section 4: My Listed Vehicles for Sale (My Listings) -->
-                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-4">
-                        <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                            <span>🚘</span> سياراتي المعروضة للبيع
+                <div class="bg-gray-900/30 backdrop-blur-md border border-gray-300 dark:border-gray-800/60 rounded-3xl p-6 shadow-xl space-y-6">
+                    <div class="flex justify-between items-center border-b border-gray-300 dark:border-gray-800 pb-4">
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <span class="flex items-center"><svg class="w-5 h-5 mr-2 inline-block text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 11h8m-8 4h8m-4-10v14"></path></svg> سياراتي المعروضة للبيع</span>
                         </h2>
                         <div class="flex items-center gap-4">
                             <span class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold rounded-full">
                                 {{ $myListedVehicles->count() }} معلنة
                             </span>
-                            <a href="{{ route('user.vehicles.create') }}" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition">
-                                ➕ إعلان سيارة جديدة
+                            <a href="{{ route('user.vehicles.create') }}" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-gray-900 dark:text-white rounded-xl text-xs font-bold transition">
+                                <span class="flex items-center justify-center"><svg class="w-4 h-4 mr-1 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> إعلان سيارة جديدة</span>
                             </a>
                         </div>
                     </div>
 
                     <div class="space-y-4 max-h-[500px] overflow-y-auto pr-1">
                         @forelse($myListedVehicles as $vehicle)
-                            <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group">
+                            <div class="bg-white dark:bg-gray-900/50 border border-gray-300 dark:border-gray-800 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group">
                                 <div class="flex items-center gap-4">
                                     <!-- Thumbnail -->
                                     @if(is_array($vehicle->images) && count($vehicle->images) > 0)
@@ -367,7 +367,7 @@
                                              onclick="openLightbox({{ json_encode($vehicle->images) }}, 0)">
                                             <img src="{{ $vehicle->images[0] }}" class="w-full h-full object-cover">
                                             @if(count($vehicle->images) > 1)
-                                                <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-[10px] font-bold">
+                                                <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-gray-900 dark:text-white text-[10px] font-bold">
                                                     +{{ count($vehicle->images) - 1 }}
                                                 </div>
                                             @endif
@@ -379,15 +379,15 @@
                                         </div>
                                     @else
                                         <div class="w-16 h-16 rounded-xl bg-gray-950 border border-gray-850 flex items-center justify-center text-gray-650 text-xl shrink-0">
-                                            🚗
+                                            
                                         </div>
                                     @endif
 
                                     <div>
-                                        <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+                                        <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-400 transition-colors">
                                             {{ $vehicle->brand }} {{ $vehicle->model }} ({{ $vehicle->year }})
                                         </h3>
-                                        <p class="text-xs text-gray-400 mt-1">
+                                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">
                                             السعر: <span class="text-emerald-400 font-bold">{{ number_format($vehicle->price) }} $</span>
                                             @if($vehicle->mileage) | المسافة: {{ number_format($vehicle->mileage) }} كم @endif
                                             @if($vehicle->color) | اللون: {{ $vehicle->color }} @endif
@@ -401,13 +401,13 @@
                                     @elseif($vehicle->status === 'repairing')
                                         <span class="px-2.5 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-bold rounded-full">تحت الصيانة</span>
                                     @else
-                                        <span class="px-2.5 py-1 bg-gray-500/10 text-gray-400 border border-gray-500/20 text-xs font-bold rounded-full">تم بيعها</span>
+                                        <span class="px-2.5 py-1 bg-gray-500/10 text-gray-600 dark:text-gray-400 border border-gray-500/20 text-xs font-bold rounded-full">تم بيعها</span>
                                     @endif
                                 </div>
                             </div>
                         @empty
-                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-800/40 text-gray-500">
-                                <span class="text-3xl block mb-2">🚘</span>
+                            <div class="text-center py-12 bg-gray-900/20 rounded-2xl border border-gray-300 dark:border-gray-800/40 text-gray-500 dark:text-gray-400">
+                                <span class="text-3xl block mb-2"></span>
                                 لم تقم بعرض أي سيارات للبيع بعد.
                             </div>
                         @endforelse

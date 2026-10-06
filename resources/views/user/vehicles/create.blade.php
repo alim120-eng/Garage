@@ -8,7 +8,7 @@
                 <!-- Header -->
                 <div class="border-b border-gray-800 pb-4">
                     <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                        <span>➕</span> عرض سيارتي للبيع في المعرض
+                        <span><svg class="w-6 h-6 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span> عرض سيارتي للبيع في المعرض
                     </h2>
                     <p class="text-gray-400 text-xs mt-1">يرجى ملء تفاصيل سيارتك بدقة. سيتمكن زوار المعرض من رؤيتها وتقديم طلبات شراء ومراسلتك مباشرة.</p>
                 </div>
@@ -21,7 +21,7 @@
                         
                         <!-- Type -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">🚗 نوع المركبة</label>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 11h8m-8 4h8m-4-10v14"></path></svg> نوع المركبة</label>
                             <select name="type" 
                                     class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5" 
                                     required>
@@ -35,12 +35,10 @@
 
                         <!-- Brand -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">🏷️ الشركة المصنعة</label>
-                            <input type="text" 
-                                   name="brand" 
-                                   placeholder="مثال: Mercedes / Toyota" 
-                                   class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5" 
-                                   required>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg> الشركة المصنعة</label>
+                            <select id="brand-select" name="brand" onchange="updateModels()" class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5" required>
+                                <option value="">اختر الشركة</option><option value="Mercedes-Benz">Mercedes-Benz</option><option value="BMW">BMW</option><option value="Audi">Audi</option><option value="Toyota">Toyota</option><option value="Volkswagen">Volkswagen</option><option value="Hyundai">Hyundai</option><option value="Kia">Kia</option><option value="Ford">Ford</option><option value="Chevrolet">Chevrolet</option><option value="Nissan">Nissan</option><option value="Honda">Honda</option><option value="Peugeot">Peugeot</option><option value="Renault">Renault</option>
+                            </select>
                             @error('brand') <p class="text-rose-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
@@ -50,18 +48,19 @@
 
                         <!-- Model -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">📌 الموديل</label>
-                            <input type="text" 
-                                   name="model" 
-                                   placeholder="مثال: Corolla / E-Class" 
-                                   class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5" 
-                                   required>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> الموديل</label>
+                            
+            <select id="model-select" name="model" onchange="checkCustomModel()" class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5" required>
+                <option value="">اختر الموديل</option>
+            </select>
+            <input type="text" id="custom-model-input" placeholder="اكتب اسم الموديل هنا..." class="mt-3 hidden w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5">
+        
                             @error('model') <p class="text-rose-500 text-xs mt-1">{{ $message }}</p> @enderror
                         </div>
 
                         <!-- Year -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">📅 سنة الصنع</label>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> سنة الصنع</label>
                             <select name="year" 
                                     class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5" 
                                     required>
@@ -79,7 +78,7 @@
 
                         <!-- Price -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">💰 السعر المطلوب ($)</label>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> السعر المطلوب ($)</label>
                             <input type="number" 
                                    name="price" 
                                    placeholder="مثال: 32000" 
@@ -92,7 +91,7 @@
 
                         <!-- Color -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">🎨 اللون الخارجي (اختياري)</label>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg> اللون الخارجي (اختياري)</label>
                             <input type="text" 
                                    name="color" 
                                    placeholder="أسود، أبيض، فضي..." 
@@ -106,7 +105,7 @@
 
                         <!-- Mileage -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">🛣️ المسافة المقطوعة (كم) (اختياري)</label>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg> المسافة المقطوعة (كم) (اختياري)</label>
                             <input type="number" 
                                    name="mileage" 
                                    placeholder="مثال: 55000" 
@@ -117,7 +116,7 @@
 
                         <!-- Fuel Type -->
                         <div>
-                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">⛽ نوع الوقود (اختياري)</label>
+                            <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg> نوع الوقود (اختياري)</label>
                             <select name="fuel_type" 
                                     class="w-full bg-gray-800 border-gray-700 rounded-xl text-white focus:ring-blue-500 py-2.5">
                                 <option value="">اختر نوع الوقود</option>
@@ -133,7 +132,7 @@
 
                     <!-- Images Upload -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">📸 رفع صور السيارة (الحد الأقصى 10 صور)</label>
+                        <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> رفع صور السيارة (الحد الأقصى 10 صور)</label>
                         <input type="file" 
                                name="images[]" 
                                accept="image/*" 
@@ -146,7 +145,7 @@
 
                     <!-- Description -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">📝 وصف إضافي وملاحظات (اختياري)</label>
+                        <label class="block text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide"><svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> وصف إضافي وملاحظات (اختياري)</label>
                         <textarea name="description" 
                                   rows="4" 
                                   placeholder="اكتب مواصفات محرك السيارة، حالة الهيكل، الفحص، التأمين، إلخ..." 
@@ -158,11 +157,11 @@
                     <div class="pt-4 border-t border-gray-800/60 flex flex-col sm:flex-row justify-between items-center gap-4">
                         <a href="{{ route('dashboard') }}" 
                            class="px-5 py-2.5 bg-gray-850 hover:bg-gray-800 text-gray-300 border border-gray-700 text-sm font-bold rounded-xl w-full sm:w-auto text-center">
-                            ← إلغاء والرجوع للوحة التحكم
+                            <svg class="w-4 h-4 mr-1.5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg> إلغاء والرجوع للوحة التحكم
                         </a>
                         <button type="submit" 
                                 class="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition shadow-lg shadow-blue-500/20 w-full sm:w-auto">
-                            🚀 نشر وإضافة في المعرض
+                            <svg class="w-5 h-5 mr-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> نشر وإضافة في المعرض
                         </button>
                     </div>
 
@@ -172,4 +171,63 @@
 
         </div>
     </div>
+
+
+<script>
+    const carData = {
+        'Mercedes-Benz': ['C-Class', 'E-Class', 'S-Class', 'A-Class', 'GLC', 'GLE', 'G-Class'],
+        'BMW': ['3 Series', '5 Series', '7 Series', 'X1', 'X3', 'X5', 'X6', 'M4'],
+        'Audi': ['A3', 'A4', 'A6', 'Q3', 'Q5', 'Q7', 'Q8', 'e-tron'],
+        'Toyota': ['Corolla', 'Camry', 'Yaris', 'Hilux', 'Land Cruiser', 'RAV4', 'Prado'],
+        'Volkswagen': ['Golf', 'Polo', 'Passat', 'Tiguan', 'Touareg', 'Arteon'],
+        'Hyundai': ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Accent', 'Kona'],
+        'Kia': ['Sportage', 'Sorento', 'Cerato', 'Optima', 'Rio', 'Telluride'],
+        'Ford': ['Mustang', 'F-150', 'Focus', 'Fiesta', 'Explorer', 'Escape'],
+        'Chevrolet': ['Camaro', 'Corvette', 'Silverado', 'Tahoe', 'Malibu', 'Cruze'],
+        'Nissan': ['Altima', 'Maxima', 'Sunny', 'Patrol', 'X-Trail', 'Qashqai'],
+        'Honda': ['Civic', 'Accord', 'CR-V', 'HR-V', 'Pilot', 'City'],
+        'Peugeot': ['208', '308', '2008', '3008', '5008', '508'],
+        'Renault': ['Clio', 'Megane', 'Captur', 'Kadjar', 'Symbol', 'Duster']
+    };
+
+    function updateModels() {
+        const brandSelect = document.getElementById('brand-select');
+        const modelSelect = document.getElementById('model-select');
+        const selectedBrand = brandSelect.value;
+        
+        modelSelect.innerHTML = '<option value="">اختر الموديل</option>';
+        if (selectedBrand && carData[selectedBrand]) {
+            carData[selectedBrand].forEach(function(model) {
+                const option = document.createElement('option');
+                option.value = model;
+                option.textContent = model;
+                modelSelect.appendChild(option);
+            });
+        }
+        
+        const otherOption = document.createElement('option');
+        otherOption.value = 'other';
+        otherOption.textContent = 'أخرى (كتابة يدوية)';
+        modelSelect.appendChild(otherOption);
+        
+        checkCustomModel();
+    }
+
+    function checkCustomModel() {
+        const modelSelect = document.getElementById('model-select');
+        const customModelInput = document.getElementById('custom-model-input');
+        if (modelSelect.value === 'other') {
+            customModelInput.classList.remove('hidden');
+            customModelInput.setAttribute('required', 'required');
+            customModelInput.setAttribute('name', 'model');
+            modelSelect.removeAttribute('name');
+        } else {
+            customModelInput.classList.add('hidden');
+            customModelInput.removeAttribute('required');
+            customModelInput.removeAttribute('name');
+            modelSelect.setAttribute('name', 'model');
+        }
+    }
+</script>
+
 </x-app-layout>

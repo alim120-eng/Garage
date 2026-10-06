@@ -24,10 +24,14 @@
                         مرحباً بك يا مشرف النظام. هنا يمكنك التحكم بكافة مبيعات السيارات، صيانات الزبائن، والاطلاع على أداء الكراج.
                     </p>
                 </div>
-                <div class="flex gap-3">
+                <div class="flex flex-wrap gap-3">
                     <a href="{{ route('admin.vehicles.index') }}" 
                        class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg shadow-blue-500/25 transition">
                         🚘 إدارة السيارات
+                    </a>
+                    <a href="{{ route('admin.contacts.index') }}" 
+                       class="px-5 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-2xl shadow-lg shadow-rose-500/25 transition">
+                        📩 رسائل التواصل
                     </a>
                 </div>
             </div>

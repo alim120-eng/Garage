@@ -77,6 +77,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Repair Orders Management
     Route::patch('/repairs/{id}', [AdminRepairController::class, 'updateStatus'])->name('repairs.update');
     Route::delete('/repairs/{id}', [AdminRepairController::class, 'destroy'])->name('repairs.destroy');
+
+    // Contact Messages
+    Route::get('/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('contacts.index');
 });
 
 // 4. Shared Auth Routes (Breeze default profile, etc.)
@@ -90,3 +93,4 @@ Route::middleware('auth')->group(function () {
 
 // Auth Routes (Laravel Breeze)
 require __DIR__.'/auth.php';
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');

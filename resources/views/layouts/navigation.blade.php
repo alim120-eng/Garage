@@ -1,5 +1,5 @@
 <nav id="main-navbar" 
-     class="{{ request()->routeIs('home') ? 'absolute top-0 left-0 right-0 bg-transparent text-white border-b border-white/10' : 'sticky top-0 bg-white/90 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 text-gray-850 dark:text-gray-200' }} 
+     class="{{ request()->routeIs('home') ? 'absolute top-0 left-0 right-0 bg-transparent text-gray-900 dark:text-white border-b border-gray-900/10 dark:border-white/10' : 'sticky top-0 bg-white/90 dark:bg-gray-900/60 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 text-gray-850 dark:text-gray-200' }} 
             z-50 transition-colors duration-300 w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
@@ -8,23 +8,23 @@
             <div class="flex items-center">
                 <a href="{{ url('/') }}" class="flex items-center hover:opacity-90 transition">
                     <!-- Tire/Wheel SVG Icon -->
-                    <svg class="w-8 h-8 mr-2 text-white fill-current" viewBox="0 0 512 512">
+                    <svg class="w-8 h-8 mr-2 {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white' }} fill-current" viewBox="0 0 512 512">
                         <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208S370.7 464 256 464zM256 128c-70.6 0-128 57.4-128 128s57.4 128 128 128s128-57.4 128-128S326.6 128 256 128zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80s80 35.9 80 80S300.1 336 256 336zM256 224c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32S273.7 224 256 224z"/>
                     </svg>
-                    <span class="font-black text-xl tracking-wider text-white">FAIR WIND</span>
+                    <span class="font-black text-xl tracking-wider {{ request()->routeIs('home') ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white' }}">FAIR WIND</span>
                 </a>
                 
                 <!-- Vertical Divider -->
                 <div class="h-6 border-l border-white/20 mx-4 hidden sm:block"></div>
                 
                 <!-- Subtitle -->
-                <span class="text-xs text-white/70 hidden sm:inline font-medium uppercase tracking-widest">Car Repair</span>
+                <span class="text-xs {{ request()->routeIs('home') ? 'text-gray-600 dark:text-white/70' : 'text-gray-600 dark:text-gray-400' }} hidden sm:inline font-medium uppercase tracking-widest">Car Repair</span>
             </div>
 
             <!-- Middle Navigation Links (Desktop) -->
             <div class="hidden lg:flex items-center gap-6">
                 @if(request()->routeIs('home'))
-                    <a href="#hero-section" class="text-xs uppercase font-bold tracking-widest text-white border-b-2 border-white pb-1 transition duration-200">
+                    <a href="#hero-section" class="text-xs uppercase font-bold tracking-widest text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-white pb-1 transition duration-200">
                         Home
                     </a>
                     <a href="#services-section" class="text-xs uppercase font-bold tracking-widest text-white/80 hover:text-white hover:border-b-2 hover:border-white/50 pb-1 transition duration-200">
@@ -47,7 +47,7 @@
                         Home
                     </a>
                     <a href="{{ route('sale.index') }}" class="text-xs uppercase font-bold tracking-widest {{ request()->routeIs('sale.index') ? 'text-white' : 'text-gray-700 dark:text-gray-300' }} hover:text-orange-450 transition duration-200">
-                        🚗 المعرض للبيع
+                        <span class="flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8M8 11h8m-8 4h8m-4-10v14"></path></svg> المعرض للبيع</span>
                     </a>
                 @endif
 
@@ -85,15 +85,17 @@
                 </div>
 
                 @auth
-                    @if(auth()->user()->isAdmin())
+                    @if(auth()->user()->role === 'admin')
                         <a href="{{ route('admin.dashboard') }}" 
-                           class="px-4 py-2 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/20 rounded-xl text-xs font-bold transition duration-300">
-                            📊 لوحة التحكم
+                           class="flex items-center px-4 py-2 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border border-blue-500/20 rounded-xl text-xs font-bold transition duration-300">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            لوحة التحكم
                         </a>
                     @else
                         <a href="{{ route('dashboard') }}" 
-                           class="px-4 py-2 bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-400 border border-indigo-500/20 rounded-xl text-xs font-bold transition duration-300">
-                            📊 لوحة التحكم
+                           class="flex items-center px-4 py-2 bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-400 border border-indigo-500/20 rounded-xl text-xs font-bold transition duration-300">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                            لوحة التحكم
                         </a>
                     @endif
 
@@ -106,14 +108,20 @@
                     </form>
                 @else
                     <a href="{{ route('login') }}" 
-                       class="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white rounded-xl text-xs font-bold transition duration-300">
-                        Sign In
+                       class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition duration-300 shadow-md">
+                        تسجيل الدخول
                     </a>
                 @endauth
 
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" type="button" class="text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none rounded-lg text-sm p-2.5 transition">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 4.22a1 1 0 011.415 0l.708.708a1 1 0 01-1.414 1.414l-.708-.708a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM14.22 15.636a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-1.414a1 1 0 01-1.415 0l-.708-.708a1 1 0 011.414-1.414l.708.708a1 1 0 010 1.414zM4 10a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zM7.192 4.22a1 1 0 010 1.415l-.708.708a1 1 0 01-1.414-1.414l.708-.708a1 1 0 011.415 0zM10 5a5 5 0 100 10 5 5 0 000-10z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-toggle" type="button" 
-                        class="lg:hidden p-2 rounded-xl text-white hover:bg-white/10 focus:outline-none">
+                        class="lg:hidden p-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 focus:outline-none transition">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -131,9 +139,15 @@
             
             @auth
                 @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-xl text-base font-semibold bg-blue-600/20 text-blue-300 border border-blue-500/20">📊 لوحة التحكم (مدير)</a>
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2 rounded-xl text-base font-semibold bg-blue-600/20 text-blue-300 border border-blue-500/20">
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        لوحة التحكم (مدير)
+                    </a>
                 @else
-                    <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-xl text-base font-semibold bg-indigo-600/20 text-indigo-300 border border-indigo-500/20">📊 لوحة التحكم</a>
+                    <a href="{{ route('dashboard') }}" class="flex items-center px-3 py-2 rounded-xl text-base font-semibold bg-indigo-600/20 text-indigo-300 border border-indigo-500/20">
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        لوحة التحكم
+                    </a>
                 @endif
                 
                 <form method="POST" action="{{ route('logout') }}" class="m-0 pt-2 border-t border-white/10">
@@ -143,8 +157,8 @@
                     </button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="block px-3 py-2 rounded-xl text-base font-semibold bg-white/10 text-white border border-white/20 text-center">
-                    Sign In
+                <a href="{{ route('login') }}" class="block px-3 py-2 rounded-xl text-base font-semibold bg-blue-600 text-white border border-blue-700 shadow-md text-center">
+                    تسجيل الدخول
                 </a>
             @endauth
         </div>
@@ -186,5 +200,40 @@
                 }
             }
         });
+    });
+
+    // Theme toggle logic
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
+    } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+    }
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    themeToggleBtn.addEventListener('click', function() {
+        themeToggleDarkIcon.classList.toggle('hidden');
+        themeToggleLightIcon.classList.toggle('hidden');
+
+        if (localStorage.getItem('color-theme')) {
+            if (localStorage.getItem('color-theme') === 'light') {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            }
+        } else {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
     });
 </script>

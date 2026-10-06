@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <title>Fair Wind Garage</title>
@@ -12,6 +12,15 @@
 
     <!-- Scripts and Styles via Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Theme Initialization to prevent FOUC -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
 
     <!-- Inline style for the loader to ensure it displays correctly -->
     <style>
