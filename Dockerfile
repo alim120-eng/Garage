@@ -27,7 +27,7 @@ RUN npm install && npm run build
 # Run composer install to bundle PHP dependencies at build time
 RUN composer install --no-dev --optimize-autoloader
 
-# Set correct permissions for Laravel storage and cache directories
-RUN chmod -R 775 storage bootstrap/cache
+# Set full permissions for Laravel storage and cache directories
+RUN chmod -R 777 storage bootstrap/cache
 
 CMD ["/start.sh"]

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,16 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Seed Admin User
-        User::factory()->create([
-            'name' => 'qlima',
-            'email' => 'alimouninou554@gmail.com',
-            'role' => 'admin',
-            'password' => '1234567899', // Auto-hashed via model casts
-        ]);
+        // 1. Seed Admin User safely
+        User::firstOrCreate(
+            ['email' => 'alimouninou554@gmail.com'],
+            [
+                'name' => 'qlima',
+                'role' => 'admin',
+                'password' => Hash::make('1234567899'),
+            ]
+        );
 
-        // 3. Seed Vehicles
+        // 2. Seed Vehicles
         $this->call(VehicleSeeder::class);
     }
 }
-
